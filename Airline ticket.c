@@ -3,6 +3,8 @@
 #include <string.h>
 #include <time.h>
 
+void menu();
+
 void clearscreen(){ 
   system("@cls||clear");
 }
