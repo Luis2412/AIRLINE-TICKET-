@@ -15,7 +15,9 @@ void Disponibilidad (){
 
 }
 
+void Resumen(){
 
+}
 
 void Salir (){
 int opcion;
@@ -58,6 +60,7 @@ printf(" _________________________________________\n");
 printf("|___________GUATEMALA AIRLINES____________|\n");
 printf("|         1) Reservar Asiento            |\n");
 printf("|         2) Ver Disponibilidad          |\n");
+printf("|         3) Ver Resumen                 |\n");  
 printf("|         3) Salir                       |\n");     
 printf("|________________________________________|\n");
 printf("\n\n");
@@ -69,8 +72,11 @@ switch(opcion){
      break;
   case 2:
      Disponibilidad();
-     break;  
+     break;
   case 3:
+     Resumen(); 
+     break;   
+  case 4:
      Salir(); 
      break;  
    
