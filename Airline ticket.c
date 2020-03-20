@@ -20,8 +20,26 @@ void Salir (){
 }
 
 void menu(){
-  int opcion; 
+  int opcion;
+  char pais_salida[10];
+  char pais_destino[10];
+  char numero_vuelo[10];
+
   clearscreen();
+  printf("Complete los siguientes espacios en blanco \n");
+  printf("\n");
+  printf("Pais de salida: ");
+  scanf("%s", pais_salida);
+  printf("Pais de destino: ");
+  scanf("%s", pais_destino);
+  printf("Numero de vuelo: ");
+  scanf("%s",numero_vuelo);
+  printf(" \n");
+  
+  clearscreen();
+  printf(" \n");
+printf("NUMERO DE VUELO: %s",numero_vuelo);
+printf(" \n");
 printf(" _________________________________________\n");
 printf("|___________GUATEMALA AIRLINES____________|\n");
 printf("|         1) Reservar Asiento            |\n");
