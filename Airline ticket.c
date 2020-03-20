@@ -15,8 +15,22 @@ void Disponibilidad (){
 
 }
 
-void Salir (){
 
+
+void Salir (){
+int opcion;
+  clearscreen();
+printf("Presione 0 para salir y 1 para regresar a la pantalla de inicio.\n");
+scanf("%d",&opcion);
+
+switch(opcion){
+  case 0:
+     exit (0);
+     break;
+  case 1:
+     menu();
+     break;   
+}
 }
 
 void menu(){
