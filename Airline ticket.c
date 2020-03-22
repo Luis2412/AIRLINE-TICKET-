@@ -19,6 +19,7 @@ char numero_vuelo[5];
 
 void menu();
 void Asientos_disponibles();
+void regresar_menu();
 
 void clearscreen(){ 
   system("@cls||clear");
@@ -51,14 +52,22 @@ Asientos_disponibles();
 char asiento_deseado[3];
 int indice = get_index(); 
 char boardingpass[9]; 
+int opcion;
+printf("\n");
 printf ("Ingrese el asiento que desea reserva:");
 scanf("%s", asiento_deseado); 
 sprintf(boardingpass, "%s-%s", numero_vuelo, asiento_deseado);
 int search = Buscar_boleto_reserva(boardingpass);
 if (search == 0){
  strcpy(arr_boletos[indice].id, boardingpass);
-printf("Asiento reservado EXITOSAMENTE!\n");
-Reservas();   
+clearscreen();
+printf("Asiento %s reservado EXITOSAMENTE!\n", asiento_deseado);
+printf("Si desea regresar al menu principal, presione 0. \n");
+scanf("%d",&opcion);
+switch (opcion)
+case 0:
+menu();
+
 }else{
     clearscreen();
     printf("Este aciento ya ha sido RESERVADO\n");
@@ -67,10 +76,9 @@ Reservas();
 }
 }
 
-
 int Buscar_boleto(char columna[1], int fila){
  for(int i = 0; i <= num_vuelos; i++){
-        char buffer[9];
+        char buffer[32];
         
         sprintf(buffer,"%s-%s%d", numero_vuelo, columna, fila);
         int compare = strncmp(arr_boletos[i].id, buffer, 9);
@@ -83,7 +91,10 @@ int Buscar_boleto(char columna[1], int fila){
     return 0;
 }
 
+
 void Asientos_disponibles(){
+  int opcion;
+  char enter;
  char  Matriz_asientos[COLS][ROWS];
  printf("|    | A | B | C | D | E | F |\n");
  printf("------------------------------\n");
@@ -106,13 +117,15 @@ for (int c = 0; c <= COLS; c++){
         }
       }    
     sprintf(fila, "%s\n", fila);
-    printf(fila);
+    printf("%s", fila);
   }
+  printf("Si desea regresar al menu principal, presione 0. \n");
+scanf("%d",&opcion);
+  switch (opcion)
+case 0:
+menu();
+
 }
-
-  
-
-
 
 void Resumen(){
 
@@ -121,26 +134,16 @@ void Resumen(){
 void Salir (){
 int opcion;
   clearscreen();
-printf("Presione 0 para salir y 1 para regresar a la pantalla de inicio.\n");
+printf("Si desea regresar al menu principal, presione 0. \n");
 scanf("%d",&opcion);
-
-switch(opcion){
-  case 0:
-     exit (0);
-     break;
-  case 1:
-     menu();
-     break;   
-}
+  switch (opcion)
+case 0:
+menu();
 }
   
-
-
-void menu(){
-  int opcion; 
-  char pais_salida[10];
-  char pais_destino[10];
-  
+void menu2 (){
+  char pais_salida[8];
+  char pais_destino[8];
 
   clearscreen();
   printf("Complete los siguientes espacios en blanco \n");
@@ -152,7 +155,12 @@ void menu(){
   printf("Numero de vuelo: ");
   scanf("%s",numero_vuelo);
   printf(" \n");
+  
+}
 
+
+void menu(){
+  int opcion; 
   clearscreen();
   printf(" \n");
 printf("NUMERO DE VUELO: %s",numero_vuelo);
@@ -185,22 +193,11 @@ switch(opcion){
 }
 }
 int main(){
+menu2();
 menu();
 
 return 0;
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
