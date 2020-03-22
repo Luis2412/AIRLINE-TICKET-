@@ -16,7 +16,19 @@ void clearscreen(){
 }
 
 void Reservas (){
-
+int Buscar_boleto(char columna[1], int fila){
+  int encontrado = 0;
+  for (int asientos = 0 ; asientos < 192; asientos++){
+    char buffer[8];
+    sprintf(buffer,"%s-%s%d", numero_vuelo, columna, fila);
+    char boleto[8] = matriz_boletos[asientos];
+    if (boleto == buffer){
+      encontrado = 1;
+    }
+  }
+  return encontrado;
+}  
+  
 }
 
 void Asientos_disponibles(){
