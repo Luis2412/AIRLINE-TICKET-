@@ -18,14 +18,55 @@ char *letras[] = {"A","B","C","D","E","F"};
 char numero_vuelo[5];
 
 void menu();
+void Asientos_disponibles();
 
 void clearscreen(){ 
   system("@cls||clear");
 }
 
-void Reservas (){
-
+int get_index(){
+    for(int f = 0; f <= num_vuelos; f++){
+        int compare = strncmp(arr_boletos[f].id, "", 9);
+        
+        if(compare == 0){
+            return f;
+        }
+    }
+    
+    return 0;
 }
+int Buscar_boleto_reserva(char bordingpass[9]){
+ for(int i = 0; i <= num_vuelos; i++){
+        int compare = strncmp(arr_boletos[i].id, bordingpass, 9);
+        
+        if(compare == 0){
+            return 1;
+        }
+    }
+    
+    return 0;
+}
+void Reservas (){
+Asientos_disponibles();
+char asiento_deseado[3];
+int indice = get_index(); 
+char boardingpass[9]; 
+printf ("Ingrese el asiento que desea reserva:");
+scanf("%s", asiento_deseado); 
+sprintf(boardingpass, "%s-%s", numero_vuelo, asiento_deseado);
+int search = Buscar_boleto_reserva(boardingpass);
+if (search == 0){
+ strcpy(arr_boletos[indice].id, boardingpass);
+printf("Asiento reservado EXITOSAMENTE!\n");
+Reservas();   
+}else{
+    clearscreen();
+    printf("Este aciento ya ha sido RESERVADO\n");
+    Reservas();
+    
+}
+}
+
 
 int Buscar_boleto(char columna[1], int fila){
  for(int i = 0; i <= num_vuelos; i++){
@@ -43,7 +84,6 @@ int Buscar_boleto(char columna[1], int fila){
 }
 
 void Asientos_disponibles(){
-  clearscreen();
  char  Matriz_asientos[COLS][ROWS];
  printf("|    | A | B | C | D | E | F |\n");
  printf("------------------------------\n");
@@ -129,9 +169,11 @@ printf("Ingrese la opcion que desea. \n");
 scanf("%d",&opcion);
 switch(opcion){
   case 1:
+  clearscreen();
      Reservas();
      break;
   case 2:
+  clearscreen();
      Asientos_disponibles();
      break;  
   case 3:
@@ -148,14 +190,6 @@ menu();
 return 0;
 
 }
-
-
-
-
-
-
-
-
 
 
 
