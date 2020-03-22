@@ -3,6 +3,12 @@
 #include <string.h>
 #include <time.h>
 
+#define ROWS 32
+#define COLS 6
+char matriz_boletos[192];
+char *letras[] = {"A","B","C","D","E","F"};
+char numero_vuelo[5];
+
 void menu();
 
 void clearscreen(){ 
@@ -13,8 +19,30 @@ void Reservas (){
 
 }
 
-void Disponibilidad (){
-
+void Asientos_disponibles(){
+  clearscreen();
+ char  Matriz_asientos[COLS][ROWS];
+ printf("|    | A | B | C | D | E | F |");
+ printf("-----------------------------");
+ for (int c = 0; c <= COLS; c++){
+   for (int r = 1; r <= ROWS; r++){
+     if(c>0){
+      if (Buscar_boleto(*letras[c], r)){
+     printf(" X ");
+        } else {
+          printf(" 0 " );
+        }
+     }
+     else{ 
+       if(r < 10){
+         printf("  "+ r + " " );
+       } else{ 
+         printf(" " + r + " " );
+       }
+     }
+   }
+ }
+ 
 }
 
 void Resumen(){
@@ -73,7 +101,7 @@ switch(opcion){
      Reservas();
      break;
   case 2:
-     Disponibilidad();
+     Asientos_disponibles();
      break;
   case 3:
      Resumen(); 
