@@ -137,8 +137,24 @@ menu();
 
 
 void Resumen(){
-
+int opcion;
+  clearscreen();
+int reservados = get_index();
+int libres =(192- get_index());
+float porcentaje_ocupado=(reservados/192)*100;
+float porcentaje_libres = (libres/192)*100;
+printf ("##RESUMEN\n");
+printf("Reservados:%f", porcentaje_ocupado);
+printf(" \n");
+printf("Libres:%f", porcentaje_libres);
+printf(" \n");
+printf("Si desea regresar al menu principal, presione 0. \n");
+scanf("%d",&opcion);
+  switch (opcion)
+case 0:
+menu();
 }
+
 
 void Salir (){
 int opcion;
