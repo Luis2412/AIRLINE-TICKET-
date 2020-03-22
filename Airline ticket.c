@@ -20,6 +20,7 @@ char numero_vuelo[5];
 void menu();
 void Asientos_disponibles();
 void regresar_menu();
+void disponiblidad();
 
 void clearscreen(){ 
   system("@cls||clear");
@@ -54,7 +55,7 @@ int indice = get_index();
 char boardingpass[9]; 
 int opcion;
 printf("\n");
-printf ("Ingrese el asiento que desea reserva:");
+printf ("Ingrese el asiento que desea reservar:");
 scanf("%s", asiento_deseado); 
 sprintf(boardingpass, "%s-%s", numero_vuelo, asiento_deseado);
 int search = Buscar_boleto_reserva(boardingpass);
@@ -62,17 +63,20 @@ if (search == 0){
  strcpy(arr_boletos[indice].id, boardingpass);
 clearscreen();
 printf("Asiento %s reservado EXITOSAMENTE!\n", asiento_deseado);
-printf("Si desea regresar al menu principal, presione 0. \n");
-scanf("%d",&opcion);
+printf("Ingrese 0 si desea regresar al menu.\n");
+scanf("%d", &opcion);
 switch (opcion)
 case 0:
 menu();
 
 }else{
-    clearscreen();
-    printf("Este aciento ya ha sido RESERVADO\n");
-    Reservas();
-    
+clearscreen();
+printf("Este aciento ya ha sido RESERVADO\n");
+printf("Ingrese 0 si desea regresar al menu.\n");
+scanf("%d", &opcion);
+switch (opcion)
+case 0:
+menu();
 }
 }
 
@@ -119,13 +123,18 @@ for (int c = 0; c <= COLS; c++){
     sprintf(fila, "%s\n", fila);
     printf("%s", fila);
   }
-  printf("Si desea regresar al menu principal, presione 0. \n");
-scanf("%d",&opcion);
-  switch (opcion)
+}
+
+void disponibilidad(){
+  int opcion; 
+  Asientos_disponibles();
+  printf("Ingrese 0 si desea regresar al menu.\n");
+scanf("%d", &opcion);
+switch (opcion)
 case 0:
 menu();
-
 }
+
 
 void Resumen(){
 
@@ -182,7 +191,7 @@ switch(opcion){
      break;
   case 2:
   clearscreen();
-     Asientos_disponibles();
+     disponibilidad();
      break;  
   case 3:
      Resumen(); 
@@ -199,5 +208,3 @@ menu();
 return 0;
 
 }
-
-
