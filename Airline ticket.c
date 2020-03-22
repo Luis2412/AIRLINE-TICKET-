@@ -45,29 +45,29 @@ int Buscar_boleto(char columna[1], int fila){
 void Asientos_disponibles(){
   clearscreen();
  char  Matriz_asientos[COLS][ROWS];
- printf("|    | A | B | C | D | E | F |");
- printf("-----------------------------");
- for (int c = 0; c <= COLS; c++){
-   for (int r = 1; r <= ROWS; r++){
-     if(c>0){
-      if (Buscar_boleto(letras[c], r)==1){
-     printf(" X ");
-        } else {
-          printf(" 0 ");
+ printf("|    | A | B | C | D | E | F |\n");
+ printf("------------------------------\n");
+for (int r = 1; r <= ROWS; r++){
+   char fila[32];
+for (int c = 0; c <= COLS; c++){
+  if(c == 0){
+  if(r < 10){
+    sprintf(fila, "| %s%d%s|", " ",r, " ");
+    } else{ 
+    sprintf(fila, "|%s%d%s|", " ", r, " ");
+    }
+  }else{
+    int buscado = Buscar_boleto(letras[c - 1], r);
+  if(buscado == 1) {
+    sprintf(fila, "%s X |", fila);
+  }else{
+    sprintf(fila, "%s 0 |", fila);
+         }
         }
-     }
-     else{ 
-       char con[4];
-       if(r < 10){
-         sprintf(con,"  %d ",r);
-       } else{ 
-          sprintf(con," %d ",r);
-       }
-         printf(con);
-     }
-   }
- }
- 
+      }    
+    sprintf(fila, "%s\n", fila);
+    printf(fila);
+  }
 }
 
   
@@ -93,10 +93,6 @@ switch(opcion){
      break;   
 }
 }
-
-//arreglar disponibilidad (matriz)
-//arreglar la opcion de numero de vuelo
-//agregar la funcion a la matriz y a la funcion de reserva de asientos
   
 
 
@@ -152,6 +148,14 @@ menu();
 return 0;
 
 }
+
+
+
+
+
+
+
+
 
 
 
